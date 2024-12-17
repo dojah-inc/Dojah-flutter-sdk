@@ -1,0 +1,24 @@
+
+pluginManagement {
+    def properties = new Properties()
+    file("local.properties").withInputStream { properties.load(it) }
+
+    def dojah_name = properties["Dojah_NAME"]
+    def dojah_pass = properties["Dojah_PASS"]
+
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven {
+            url = uri("https://maven.pkg.github.com/dojah-inc/sdk-kotlin")
+            credentials {
+                username = dojah_name
+                password = dojah_pass
+            }
+        }
+    }
+}
+
+rootProject.name = 'dojah_flutter_sdk'
+

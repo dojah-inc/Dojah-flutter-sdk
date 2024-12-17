@@ -1,0 +1,74 @@
+PODS:
+  - dojah_flutter_sdk (0.0.1):
+    - DojahWidget
+    - Flutter
+  - DojahWidget (1.0.2):
+    - GooglePlaces (~> 8.5.0)
+    - HorizonCalendar (~> 1.16.0)
+    - IQKeyboardManagerSwift (~> 7.1.1)
+    - Kingfisher (~> 7.12.0)
+    - lottie-ios (~> 4.3.3)
+    - RealmSwift (~> 10.52.2)
+  - Flutter (1.0.0)
+  - GooglePlaces (8.5.0)
+  - HorizonCalendar (1.16.0)
+  - integration_test (0.0.1):
+    - Flutter
+  - IQKeyboardManagerSwift (7.1.1)
+  - Kingfisher (7.12.0)
+  - lottie-ios (4.3.4)
+  - Realm (10.52.3):
+    - Realm/Headers (= 10.52.3)
+  - Realm/Headers (10.52.3)
+  - RealmSwift (10.52.3):
+    - Realm (= 10.52.3)
+
+DEPENDENCIES:
+  - dojah_flutter_sdk (from `.symlinks/plugins/dojah_flutter_sdk/ios`)
+  - DojahWidget (from `https://github.com/dojah-inc/sdk-swift.git`, branch `pod-package`)
+  - Flutter (from `Flutter`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+  - Realm (~> 10.52.2)
+
+SPEC REPOS:
+  trunk:
+    - GooglePlaces
+    - HorizonCalendar
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - lottie-ios
+    - Realm
+    - RealmSwift
+
+EXTERNAL SOURCES:
+  dojah_flutter_sdk:
+    :path: ".symlinks/plugins/dojah_flutter_sdk/ios"
+  DojahWidget:
+    :branch: pod-package
+    :git: https://github.com/dojah-inc/sdk-swift.git
+  Flutter:
+    :path: Flutter
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+
+CHECKOUT OPTIONS:
+  DojahWidget:
+    :commit: 9f4e64bda81e276bbea2a7ace8d84a8a71478424
+    :git: https://github.com/dojah-inc/sdk-swift.git
+
+SPEC CHECKSUMS:
+  dojah_flutter_sdk: fd695d6f0052ae2e1a7352b5aeb5a2e710069dae
+  DojahWidget: a89fe1aefb3dbb42f4886fa2d1e9977bf37b364d
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  GooglePlaces: 426efb69051e7b460e16300ba63598687d10fa1a
+  HorizonCalendar: 90d7281cf1cd0cb3fae1d3e53f6f7fd24fda5a0e
+  integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
+  IQKeyboardManagerSwift: d7f3d3a562c237a0e7335e657cd598c452f57f1b
+  Kingfisher: 53a10ea35051a436b5fb626ca2dd8f3144d755e9
+  lottie-ios: 3d98679b41fa6fd6aff2352b3953dbd3df8a397e
+  Realm: f9d340f510309e52a393d65c56103ef524d88a43
+  RealmSwift: 673454b09bc096853ee530e824847f38cdc21243
+
+PODFILE CHECKSUM: abb996a0874d12d7fca8dccf1be2446a461681b3
+
+COCOAPODS: 1.11.3
