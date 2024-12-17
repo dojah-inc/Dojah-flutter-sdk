@@ -1,4 +1,4 @@
-# dojah_flutter_sdk
+# Dojah Flutter SDK
 
 A new Flutter project.
 
