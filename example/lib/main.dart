@@ -100,8 +100,8 @@ class _MyAppState extends State<MyApp> {
                         try {
                           final result = await _dojahFlutterSdkPlugin.launch(
                               _widgetIdCtrl.text,
-                              referenceId: _widgetIdCtrl.text.isNotEmpty
-                                  ? _widgetIdCtrl.text
+                              referenceId: _refIdCtrl.text.isNotEmpty
+                                  ? _refIdCtrl.text
                                   : null,
                               email: _emailCtrl.text.isNotEmpty
                                   ? _emailCtrl.text

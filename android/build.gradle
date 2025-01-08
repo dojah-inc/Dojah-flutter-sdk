@@ -64,6 +64,11 @@ android {
     defaultConfig {
         minSdk = 21
     }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
 
     repositories {
         google()
@@ -81,7 +86,7 @@ android {
     dependencies {
         testImplementation("org.jetbrains.kotlin:kotlin-test")
         testImplementation("org.mockito:mockito-core:5.0.0")
-        implementation ("com.dojah_inc:dojah_android_sdk:dev-0.0.6")
+        implementation ("com.dojah_inc:dojah_android_sdk:dev-0.1.0")
     }
 
     testOptions {
