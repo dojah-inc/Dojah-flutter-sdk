@@ -27,6 +27,14 @@ jobs:
     - name: Install dependencies
       run: yarn install
 
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: 'stable'
+
+    - name: Install Flutter dependencies
+      run: flutter pub get
+
     # Step 4: Set up CocoaPods
     - name: Install CocoaPods
       run: pod install --repo-update
