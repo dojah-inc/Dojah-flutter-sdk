@@ -52,6 +52,32 @@ jobs:
     - name: Install CocoaPods
       run: rm -rf Pods Podfile.lock && pod install --repo-update
       working-directory: example/ios
+      # Step 1: Checkout code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+      # Step 2: Set up Xcode
+    - name: Set up Xcode
+      run: |
+        sudo xcode-select --switch /Applications/Xcode.app
+
+      # Step 3: Build the .app file
+    - name: Build Debug .app file
+      run: |
+        xcodebuild \
+          -workspace Runner.xcworkspace \ # Replace with your workspace name
+          -scheme com.example.dojahFlutterSdkExample \         # Replace with your scheme name
+          -sdk iphonesimulator \
+          -configuration Debug \
+          -derivedDataPath ./build
+
+      # Step 4: Archive the .app file for artifacts
+    - name: Archive .app file
+      uses: actions/upload-artifact@v3
+      with:
+        name: DebugApp
+        path: ./build/Build/Products/Runner-iphonesimulator/Runner.app
+
 
     # # Step 5: Build the app
     # - name: Build iOS app
@@ -74,39 +100,39 @@ jobs:
     #       -exportPath $PWD/build
 
     # Step 5: Build the app without signing
-    - name: Build iOS app (Debug without signing)
-      run: |
-        xcodebuild clean build \
-          -workspace example/ios/Runner.xcworkspace \
-          -scheme Runner \
-          -sdk iphoneos \
-          -configuration Debug \
-          -derivedDataPath $PWD/build \
-          CODE_SIGNING_ALLOWED=NO
+#    - name: Build iOS app (Debug without signing)
+#      run: |
+#        xcodebuild clean build \
+#          -workspace example/ios/Runner.xcworkspace \
+#          -scheme Runner \
+#          -sdk iphoneos \
+#          -configuration Debug \
+#          -derivedDataPath $PWD/build \
+#          CODE_SIGNING_ALLOWED=NO
 
     # Step 6: Create .ipa without signing
-    - name: Create .ipa (Debug build)
-      run: |
-        mkdir -p Payload
-        cp -r build/Build/Products/Debug-iphoneos/Runner.app Payload/
-        zip -r Runner.ipa Payload
-        mv Runner.ipa build/Runner.ipa
+#    - name: Create .ipa (Debug build)
+#      run: |
+#        mkdir -p Payload
+#        cp -r build/Build/Products/Debug-iphoneos/Runner.app Payload/
+#        zip -r Runner.ipa Payload
+#        mv Runner.ipa build/Runner.ipa
 
 
     # Step 7: Upload .ipa to Firebase Test Lab
-    - name: Run tests on Firebase Test Lab
-      env:
-        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
-      run: |
-        gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
-        gcloud firebase test ios run \
-          --type robo \
-          --app $PWD/build/Runner.ipa \
-          --device model=iphone13pro,version=16.0,locale=en,orientation=portrait
+#    - name: Run tests on Firebase Test Lab
+#      env:
+#        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+#      run: |
+#        gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+#        gcloud firebase test ios run \
+#          --type robo \
+#          --app $PWD/build/Runner.ipa \
+#          --device model=iphone13pro,version=16.0,locale=en,orientation=portrait
 
     # Upload the .ipa as an artifact
-    - name: Upload .ipa
-      uses: actions/upload-artifact@v3
-      with:
-        name: Runner.ipa
-        path: build/Runner.ipa
+#    - name: Upload .ipa
+#      uses: actions/upload-artifact@v3
+#      with:
+#        name: Runner.ipa
+#        path: build/Runner.ipa
