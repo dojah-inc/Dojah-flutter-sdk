@@ -1,0 +1,69 @@
+name: Build and Test iOS App
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+
+    steps:
+    # Step 1: Checkout code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Node.js
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: yarn install
+
+    # Step 4: Set up CocoaPods
+    - name: Install CocoaPods
+      run: pod install --repo-update
+      working-directory: ios
+
+    # Step 5: Build the app
+    - name: Build iOS app
+      run: |
+        xcodebuild clean archive \
+          -workspace ios/Dojah.xcworkspace \
+          -scheme Dojah \
+          -sdk iphoneos \
+          -configuration Release \
+          -archivePath $PWD/build/Dojah.xcarchive
+
+    # Step 6: Export .ipa
+    - name: Export .ipa
+      run: |
+        xcodebuild -exportArchive \
+          -archivePath $PWD/build/Dojah.xcarchive \
+          -exportOptionsPlist ios/exportOptions.plist \
+          -exportPath $PWD/build
+
+    # Step 7: Upload .ipa to Firebase Test Lab
+    - name: Run tests on Firebase Test Lab
+      env:
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+      run: |
+        gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+        gcloud firebase test ios run \
+          --type robo \
+          --app $PWD/build/Dojah.ipa \
+          --device model=iphone13pro,version=16.0,locale=en,orientation=portrait
+
+    # Upload the .ipa as an artifact
+    - name: Upload .ipa
+      uses: actions/upload-artifact@v3
+      with:
+        name: Dojah.ipa
+        path: build/Dojah.ipa
