@@ -40,6 +40,9 @@ jobs:
     - name: Install Flutter dependencies
       run: flutter pub get
 
+    - name: Clean Example buid
+      run: flutter clean
+      working-directory: example
     
     - name: Install Example Flutter dependencies
       run: flutter pub get
