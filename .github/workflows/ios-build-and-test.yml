@@ -50,7 +50,7 @@ jobs:
 
     # Step 4: Set up CocoaPods
     - name: Install CocoaPods
-      run: pod install --repo-update
+      run: rm -rf Pods Podfile.lock && pod install --repo-update
       working-directory: example/ios
 
     # # Step 5: Build the app
