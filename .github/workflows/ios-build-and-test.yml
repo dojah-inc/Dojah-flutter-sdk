@@ -69,7 +69,7 @@ jobs:
     - name: Build iOS app (Debug without signing)
       run: |
         xcodebuild clean build \
-          -workspace ios/Runner.xcworkspace \
+          -workspace example/ios/Runner.xcworkspace \
           -scheme Runner \
           -sdk iphoneos \
           -configuration Debug \
