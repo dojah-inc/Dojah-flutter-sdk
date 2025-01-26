@@ -79,7 +79,7 @@ jobs:
         xcodebuild clean build \
           -workspace example/ios/Runner.xcworkspace \
           -scheme Runner \
-          -sdk iphoneos \
+          -sdk iphoneos14.4 \
           -configuration Debug \
           -derivedDataPath $PWD/build \
           CODE_SIGNING_ALLOWED=NO
