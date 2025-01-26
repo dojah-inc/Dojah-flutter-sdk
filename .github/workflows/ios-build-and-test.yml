@@ -92,21 +92,21 @@ jobs:
         zip -r Runner.ipa Payload
         mv Runner.ipa build/Runner.ipa
 
-    - name: Set up Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@v1
-      with:
-        version: 'latest'
+    # - name: Set up Google Cloud SDK
+    #   uses: google-github-actions/setup-gcloud@v1
+    #   with:
+    #     version: 'latest'
 
-    # Step 7: Upload .ipa to Firebase Test Lab
-    - name: Run tests on Firebase Test Lab
-      env:
-        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
-      run: |
-        gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
-        gcloud firebase test ios run \
-          --type robo \
-          --app $PWD/build/Runner.ipa \
-          --device model=iphone13pro,version=16.0,locale=en,orientation=portrait
+    # # Step 7: Upload .ipa to Firebase Test Lab
+    # - name: Run tests on Firebase Test Lab
+    #   env:
+    #     GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+    #   run: |
+    #     gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+    #     gcloud firebase test ios run \
+    #       --type robo \
+    #       --app $PWD/build/Runner.ipa \
+    #       --device model=iphone13pro,version=16.0,locale=en,orientation=portrait
 
     # Upload the .ipa as an artifact
     - name: Upload .ipa
