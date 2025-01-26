@@ -32,23 +32,44 @@ jobs:
       run: pod install --repo-update
       working-directory: ios
 
-    # Step 5: Build the app
-    - name: Build iOS app
+    # # Step 5: Build the app
+    # - name: Build iOS app
+    #   run: |
+    #     xcodebuild clean archive \
+    #       -workspace ios/Dojah.xcworkspace \
+    #       -scheme Dojah \
+    #       -sdk iphoneos \
+    #       -configuration Release \
+    #       -archivePath $PWD/build/Dojah.xcarchive
+
+    
+
+    # Step 6: Export .ipa
+    # - name: Export .ipa
+    #   run: |
+    #     xcodebuild -exportArchive \
+    #       -archivePath $PWD/build/Dojah.xcarchive \
+    #       -exportOptionsPlist ios/exportOptions.plist \
+    #       -exportPath $PWD/build
+
+    # Step 5: Build the app without signing
+    - name: Build iOS app (Debug without signing)
       run: |
-        xcodebuild clean archive \
+        xcodebuild clean build \
           -workspace ios/Dojah.xcworkspace \
           -scheme Dojah \
           -sdk iphoneos \
-          -configuration Release \
-          -archivePath $PWD/build/Dojah.xcarchive
+          -configuration Debug \
+          -derivedDataPath $PWD/build
 
-    # Step 6: Export .ipa
-    - name: Export .ipa
+    # Step 6: Create .ipa without signing
+    - name: Create .ipa (Debug build)
       run: |
-        xcodebuild -exportArchive \
-          -archivePath $PWD/build/Dojah.xcarchive \
-          -exportOptionsPlist ios/exportOptions.plist \
-          -exportPath $PWD/build
+        mkdir -p Payload
+        cp -r build/Build/Products/Debug-iphoneos/Dojah.app Payload/
+        zip -r Dojah.ipa Payload
+        mv Dojah.ipa build/Dojah.ipa
+
 
     # Step 7: Upload .ipa to Firebase Test Lab
     - name: Run tests on Firebase Test Lab
