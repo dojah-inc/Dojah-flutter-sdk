@@ -40,6 +40,11 @@ jobs:
     - name: Install Flutter dependencies
       run: flutter pub get
 
+    
+    - name: Install Example Flutter dependencies
+      run: flutter pub get
+      working-directory: example
+
     # Step 4: Set up CocoaPods
     - name: Install CocoaPods
       run: pod install --repo-update
