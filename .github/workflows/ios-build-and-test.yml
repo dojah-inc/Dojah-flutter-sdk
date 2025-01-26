@@ -73,7 +73,8 @@ jobs:
           -scheme Runner \
           -sdk iphoneos \
           -configuration Debug \
-          -derivedDataPath $PWD/build
+          -derivedDataPath $PWD/build \
+          CODE_SIGNING_ALLOWED=NO
 
     # Step 6: Create .ipa without signing
     - name: Create .ipa (Debug build)
