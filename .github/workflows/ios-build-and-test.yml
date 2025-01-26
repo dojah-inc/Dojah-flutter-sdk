@@ -32,6 +32,11 @@ jobs:
       with:
         flutter-version: '3.24.5'
 
+    - name: Authenticate GitHub
+      run: |
+        echo "machine github.com login ${{ secrets.DOJAH_SDK_TOK }}" > ~/.netrc
+        chmod 600 ~/.netrc
+
     - name: Install Flutter dependencies
       run: flutter pub get
 
