@@ -36,11 +36,11 @@ jobs:
     # - name: Build iOS app
     #   run: |
     #     xcodebuild clean archive \
-    #       -workspace ios/Dojah.xcworkspace \
-    #       -scheme Dojah \
+    #       -workspace ios/Runner.xcworkspace \
+    #       -scheme Runner \
     #       -sdk iphoneos \
     #       -configuration Release \
-    #       -archivePath $PWD/build/Dojah.xcarchive
+    #       -archivePath $PWD/build/Runner.xcarchive
 
     
 
@@ -48,7 +48,7 @@ jobs:
     # - name: Export .ipa
     #   run: |
     #     xcodebuild -exportArchive \
-    #       -archivePath $PWD/build/Dojah.xcarchive \
+    #       -archivePath $PWD/build/Runner.xcarchive \
     #       -exportOptionsPlist ios/exportOptions.plist \
     #       -exportPath $PWD/build
 
@@ -56,8 +56,8 @@ jobs:
     - name: Build iOS app (Debug without signing)
       run: |
         xcodebuild clean build \
-          -workspace ios/Dojah.xcworkspace \
-          -scheme Dojah \
+          -workspace ios/Runner.xcworkspace \
+          -scheme Runner \
           -sdk iphoneos \
           -configuration Debug \
           -derivedDataPath $PWD/build
@@ -66,9 +66,9 @@ jobs:
     - name: Create .ipa (Debug build)
       run: |
         mkdir -p Payload
-        cp -r build/Build/Products/Debug-iphoneos/Dojah.app Payload/
-        zip -r Dojah.ipa Payload
-        mv Dojah.ipa build/Dojah.ipa
+        cp -r build/Build/Products/Debug-iphoneos/Runner.app Payload/
+        zip -r Runner.ipa Payload
+        mv Runner.ipa build/Runner.ipa
 
 
     # Step 7: Upload .ipa to Firebase Test Lab
@@ -79,12 +79,12 @@ jobs:
         gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
         gcloud firebase test ios run \
           --type robo \
-          --app $PWD/build/Dojah.ipa \
+          --app $PWD/build/Runner.ipa \
           --device model=iphone13pro,version=16.0,locale=en,orientation=portrait
 
     # Upload the .ipa as an artifact
     - name: Upload .ipa
       uses: actions/upload-artifact@v3
       with:
-        name: Dojah.ipa
-        path: build/Dojah.ipa
+        name: Runner.ipa
+        path: build/Runner.ipa
