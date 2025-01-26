@@ -92,6 +92,10 @@ jobs:
         zip -r Runner.ipa Payload
         mv Runner.ipa build/Runner.ipa
 
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        version: 'latest'
 
     # Step 7: Upload .ipa to Firebase Test Lab
     - name: Run tests on Firebase Test Lab
