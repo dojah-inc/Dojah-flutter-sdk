@@ -52,6 +52,7 @@ jobs:
     - name: Install CocoaPods
       run: |
         rm -rf Pods Podfile.lock Runner.xcworkspace
+        rm -rf ~/Library/Developer/Xcode/DerivedData
         pod deintegrate
         pod install --repo-update
       working-directory: example/ios
