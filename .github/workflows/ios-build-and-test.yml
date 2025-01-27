@@ -53,15 +53,6 @@ jobs:
       run: pod install --repo-update
       working-directory: example/ios
 
-#      # Step 1: Checkout code
-#    - name: Checkout code
-#      uses: actions/checkout@v3
-#
-#      # Step 2: Set up Xcode
-#    - name: Set up Xcode
-#      run: |
-#        sudo xcode-select --switch /Applications/Xcode.app
-
       # Step 3: Build the .app file
     - name: Build Debug .app file
       run: |
@@ -81,25 +72,25 @@ jobs:
         path: build/Build/Products/Debug-iphonesimulator/Runner.app
 
 
-    # # Step 5: Build the app
-    # - name: Build iOS app
-    #   run: |
-    #     xcodebuild clean archive \
-    #       -workspace ios/Runner.xcworkspace \
-    #       -scheme Runner \
-    #       -sdk iphoneos \
-    #       -configuration Release \
-    #       -archivePath $PWD/build/Runner.xcarchive
+     # Step 5: Build the app
+    - name: Build iOS app
+      run: |
+        xcodebuild clean archive \
+          -workspace ios/Runner.xcworkspace \
+          -scheme Runner \
+          -sdk iphoneos \
+          -configuration Release \
+          -archivePath $PWD/build/Runner.xcarchive
 
     
 
     # Step 6: Export .ipa
-    # - name: Export .ipa
-    #   run: |
-    #     xcodebuild -exportArchive \
-    #       -archivePath $PWD/build/Runner.xcarchive \
-    #       -exportOptionsPlist ios/exportOptions.plist \
-    #       -exportPath $PWD/build
+    - name: Export .ipa
+      run: |
+        xcodebuild -exportArchive \
+          -archivePath $PWD/build/Runner.xcarchive \
+          -exportOptionsPlist ios/exportOptions.plist \
+          -exportPath $PWD/build
 
     # Step 5: Build the app without signing
 #    - name: Build iOS app (Debug without signing)
@@ -137,8 +128,8 @@ jobs:
 #          --device model=iphone13pro,version=16.0,locale=en,orientation=portrait
 
     # Upload the .ipa as an artifact
-#    - name: Upload .ipa
-#      uses: actions/upload-artifact@v3
-#      with:
-#        name: Runner.ipa
-#        path: build/Runner.ipa
+    - name: Upload .ipa
+      uses: actions/upload-artifact@v3
+      with:
+        name: Runner.ipa
+        path: build/Runner.ipa
