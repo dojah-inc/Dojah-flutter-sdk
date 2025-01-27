@@ -51,10 +51,11 @@ jobs:
     # Step 4: Set up CocoaPods
     - name: Install CocoaPods
       run: |
-        rm -rf Pods Podfile.lock
+        rm -rf Pods Podfile.lock Runner.xcworkspace
         pod deintegrate
         pod install --repo-update
       working-directory: example/ios
+
       # Step 1: Checkout code
     - name: Checkout code
       uses: actions/checkout@v3
