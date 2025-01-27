@@ -73,6 +73,7 @@ jobs:
           -sdk iphonesimulator \
           -configuration Debug \
           -derivedDataPath ./build
+      working-directory: example/ios
 
       # Step 4: Archive the .app file for artifacts
     - name: Archive .app file
