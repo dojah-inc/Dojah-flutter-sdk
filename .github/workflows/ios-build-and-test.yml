@@ -71,16 +71,16 @@ jobs:
       # Step 3: Build the .app file
     - name: Build Debug .app file
       run: |
-        ls Pods/
-        touch Pods/Target\ Support\ Files/Pods-Runner/Pods-Runner-resources-Debug-input-files.xcfilelist
-        touch Pods/Target\ Support\ Files/Pods-Runner/Pods-Runner-resources-Debug-output-files.xcfilelist
-        xcodebuild \
-          -workspace Runner.xcworkspace \
+        ls example/ios/Pods/
+#        touch Pods/Target\ Support\ Files/Pods-Runner/Pods-Runner-resources-Debug-input-files.xcfilelist
+#        touch Pods/Target\ Support\ Files/Pods-Runner/Pods-Runner-resources-Debug-output-files.xcfilelist
+        xcodebuild clean build \
+          -workspace example/ios/Runner.xcworkspace \
           -scheme Runner \
           -sdk iphonesimulator \
           -configuration Debug \
-          -derivedDataPath ./build
-      working-directory: example/ios
+          -derivedDataPath $PWD/build \
+          CODE_SIGNING_ALLOWED=NO
 
       # Step 4: Archive the .app file for artifacts
     - name: Archive .app file
