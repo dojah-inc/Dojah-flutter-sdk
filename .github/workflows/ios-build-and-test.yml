@@ -78,7 +78,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: DebugApp
-        path: ./build/Build/Products/Runner-iphonesimulator/Runner.app
+        path: build/Runner.app
 
 
     # # Step 5: Build the app
