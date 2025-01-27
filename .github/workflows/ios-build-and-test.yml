@@ -71,6 +71,7 @@ jobs:
       # Step 3: Build the .app file
     - name: Build Debug .app file
       run: |
+        ls Pods/Target\ Support\ Files/Pods-Runner/
         touch Pods/Target\ Support\ Files/Pods-Runner/Pods-Runner-resources-Debug-input-files.xcfilelist
         touch Pods/Target\ Support\ Files/Pods-Runner/Pods-Runner-resources-Debug-output-files.xcfilelist
         xcodebuild \
