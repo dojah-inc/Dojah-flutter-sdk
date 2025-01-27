@@ -40,10 +40,10 @@ jobs:
     - name: Install Flutter dependencies
       run: flutter pub get
 
-    - name: Clean Example buid
-      run: flutter clean
-      working-directory: example
-    
+#    - name: Clean Example buid
+#      run: flutter clean
+#      working-directory: example
+#
     - name: Install Example Flutter dependencies
       run: flutter pub get
       working-directory: example
@@ -52,10 +52,6 @@ jobs:
     - name: Install CocoaPods
       run: |
         rm -rf Pods Podfile.lock Runner.xcworkspace
-        rm -rf ~/Library/Developer/Xcode/DerivedData
-        pod deintegrate
-        sudo gem install cocoapods
-        pod repo update  
         pod install --repo-update
       working-directory: example/ios
 
