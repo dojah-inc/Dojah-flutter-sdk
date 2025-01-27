@@ -52,6 +52,7 @@ jobs:
     - name: Install CocoaPods
       run: |
         rm -rf Pods Podfile.lock Runner.xcworkspace
+#        xcodebuild clean -workspace Runner.xcworkspace -scheme Runner -configuration Debug
         pod deintegrate
         pod install --repo-update
       working-directory: example/ios
@@ -68,8 +69,8 @@ jobs:
       # Step 3: Build the .app file
     - name: Build Debug .app file
       run: |
-        xcodebuild clean build \
-          -workspace example/ios/Runner.xcworkspace \
+        xcodebuild \
+          -workspace Runner.xcworkspace \
           -scheme Runner \
           -sdk iphonesimulator \
           -configuration Debug \
