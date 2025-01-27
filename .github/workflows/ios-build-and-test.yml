@@ -77,8 +77,8 @@ jobs:
     - name: Archive .app file
       uses: actions/upload-artifact@v3
       with:
-        name: DebugApp
-        path: build/Runner.app
+        name: DebugRunner
+        path: build/Build/Products/Debug-iphonesimulator/Runner.app
 
 
     # # Step 5: Build the app
