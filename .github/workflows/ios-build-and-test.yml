@@ -65,8 +65,8 @@ jobs:
     - name: Build Debug .app file
       run: |
         xcodebuild \
-          -workspace Runner.xcworkspace \ # Replace with your workspace name
-          -scheme Runner \         # Replace with your scheme name
+          -workspace Runner.xcworkspace \
+          -scheme Runner \         
           -sdk iphonesimulator \
           -configuration Debug \
           -derivedDataPath ./build
