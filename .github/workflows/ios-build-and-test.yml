@@ -54,6 +54,8 @@ jobs:
         rm -rf Pods Podfile.lock Runner.xcworkspace
         rm -rf ~/Library/Developer/Xcode/DerivedData
         pod deintegrate
+        sudo gem install cocoapods
+        pod repo update  
         pod install --repo-update
       working-directory: example/ios
 
