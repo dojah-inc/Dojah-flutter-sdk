@@ -79,8 +79,7 @@ jobs:
           -scheme Runner \
           -sdk iphonesimulator \
           -configuration Debug \
-          -derivedDataPath $PWD/build \
-          CODE_SIGNING_ALLOWED=NO
+          -derivedDataPath $PWD/build
 
       # Step 4: Archive the .app file for artifacts
     - name: Archive .app file
