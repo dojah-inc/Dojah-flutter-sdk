@@ -67,8 +67,7 @@ jobs:
       # Step 3: Build the .app file
     - name: Build Debug .app file
       run: |
-        xcodebuild clean -workspace Runner.xcworkspace -scheme Runner
-        xcodebuild \
+        xcodebuild clean build \
           -workspace example/ios/Runner.xcworkspace \
           -scheme Runner \
           -sdk iphonesimulator \
