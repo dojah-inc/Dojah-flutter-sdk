@@ -66,7 +66,7 @@ jobs:
       run: |
         xcodebuild \
           -workspace Runner.xcworkspace \
-          -scheme Runner \         
+          -scheme Runner \
           -sdk iphonesimulator \
           -configuration Debug \
           -derivedDataPath ./build
