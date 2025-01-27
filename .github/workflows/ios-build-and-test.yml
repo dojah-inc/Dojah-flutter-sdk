@@ -53,25 +53,25 @@ jobs:
       run: pod install --repo-update
       working-directory: example/ios
 
-      # Step 1: Checkout code
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-      # Step 2: Set up Xcode
-    - name: Set up Xcode
-      run: |
-        sudo xcode-select --switch /Applications/Xcode.app
+#      # Step 1: Checkout code
+#    - name: Checkout code
+#      uses: actions/checkout@v3
+#
+#      # Step 2: Set up Xcode
+#    - name: Set up Xcode
+#      run: |
+#        sudo xcode-select --switch /Applications/Xcode.app
 
       # Step 3: Build the .app file
     - name: Build Debug .app file
       run: |
-        ls example/ios/Pods/
         xcodebuild clean build \
           -workspace example/ios/Runner.xcworkspace \
           -scheme Runner \
           -sdk iphonesimulator \
           -configuration Debug \
-          -derivedDataPath $PWD/build
+          -derivedDataPath $PWD/build \
+          CODE_SIGNING_ALLOWED=NO
 
       # Step 4: Archive the .app file for artifacts
     - name: Archive .app file
