@@ -51,11 +51,6 @@ jobs:
     # Step 4: Set up CocoaPods
     - name: Install CocoaPods
       run: |
-        rm -rf Pods Podfile.lock Runner.xcworkspace
-        rm -rf ~/Library/Developer/Xcode/DerivedData
-        pod deintegrate
-        sudo gem install cocoapods
-        pod repo update  
         pod install --repo-update
       working-directory: example/ios
 
