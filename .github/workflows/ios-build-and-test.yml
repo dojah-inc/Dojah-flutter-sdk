@@ -65,7 +65,7 @@ jobs:
     - name: Build Debug .app file
       run: |
         xcodebuild \
-          -workspace Runner.xcworkspace \
+          -workspace example/ios/Runner.xcworkspace \
           -scheme Runner \
           -sdk iphonesimulator \
           -configuration Debug \
