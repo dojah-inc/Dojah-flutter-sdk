@@ -20,5 +20,5 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'dojah_flutter_sdk'
+rootProject.name = 'flutter_dojah_kyc'
 

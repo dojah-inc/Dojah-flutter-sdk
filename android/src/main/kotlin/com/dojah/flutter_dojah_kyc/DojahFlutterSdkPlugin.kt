@@ -1,4 +1,4 @@
-package com.example.dojah_flutter_sdk
+package com.dojah.flutter_dojah_kyc
 
 import android.content.Context
 import androidx.annotation.NonNull
@@ -20,7 +20,7 @@ class DojahFlutterSdkPlugin : FlutterPlugin, MethodCallHandler {
     private lateinit var context: Context
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "dojah_flutter_sdk")
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_dojah_kyc")
         channel.setMethodCallHandler(this)
         context = flutterPluginBinding.applicationContext
     }

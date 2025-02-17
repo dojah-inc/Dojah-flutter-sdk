@@ -1,4 +1,4 @@
-group = "com.example.dojah_flutter_sdk"
+group = "com.dojah.flutter_dojah_kyc"
 version = "1.0-SNAPSHOT"
 
 
@@ -42,7 +42,7 @@ apply plugin: "kotlin-android"
 
 android {
     if (project.android.hasProperty("namespace")) {
-        namespace = "com.example.dojah_flutter_sdk"
+        namespace = "com.dojah.flutter_dojah_kyc"
     }
 
     compileSdk = 34

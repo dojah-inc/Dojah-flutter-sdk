@@ -1,4 +1,4 @@
-package com.example.dojah_flutter_sdk_example
+package com.example.flutter_dojah_kyc_example
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,12 +1,12 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:dojah_flutter_sdk/dojah_flutter_sdk_method_channel.dart';
+import 'package:flutter_dojah_kyc/flutter_dojah_kyc_method_channel.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   MethodChannelDojahFlutterSdk platform = MethodChannelDojahFlutterSdk();
-  const MethodChannel channel = MethodChannel('dojah_flutter_sdk');
+  const MethodChannel channel = MethodChannel('flutter_dojah_kyc');
 
   setUp(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(

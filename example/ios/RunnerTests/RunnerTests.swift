@@ -3,7 +3,7 @@ import UIKit
 import XCTest
 
 
-@testable import dojah_flutter_sdk
+@testable import flutter_dojah_kyc
 
 // This demonstrates a simple unit test of the Swift portion of this plugin's implementation.
 //

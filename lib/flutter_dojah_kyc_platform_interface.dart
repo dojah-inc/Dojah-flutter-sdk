@@ -1,6 +1,6 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'dojah_flutter_sdk_method_channel.dart';
+import 'flutter_dojah_kyc_method_channel.dart';
 
 abstract class DojahFlutterSdkPlatform extends PlatformInterface {
   /// Constructs a DojahFlutterSdkPlatform.

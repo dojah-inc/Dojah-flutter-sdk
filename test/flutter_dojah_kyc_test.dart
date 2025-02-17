@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:dojah_flutter_sdk/dojah_flutter_sdk.dart';
-import 'package:dojah_flutter_sdk/dojah_flutter_sdk_platform_interface.dart';
-import 'package:dojah_flutter_sdk/dojah_flutter_sdk_method_channel.dart';
+import 'package:flutter_dojah_kyc/flutter_dojah_kyc.dart';
+import 'package:flutter_dojah_kyc/flutter_dojah_kyc_platform_interface.dart';
+import 'package:flutter_dojah_kyc/flutter_dojah_kyc_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 class MockDojahFlutterSdkPlatform

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:dojah_flutter_sdk/dojah_flutter_sdk.dart';
+import 'package:flutter_dojah_kyc/flutter_dojah_kyc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _dojahFlutterSdkPlugin = DojahKyc();
   final TextEditingController _widgetIdCtrl = TextEditingController(text: "6752c1e8d6958d1c550466e5");
   final TextEditingController _refIdCtrl = TextEditingController(text: null);
   final TextEditingController _emailCtrl = TextEditingController(text: null);
@@ -98,7 +97,7 @@ class _MyAppState extends State<MyApp> {
                                   BorderRadius.circular(inputRadius))),
                       onPressed: () async {
                         try {
-                          final result = await _dojahFlutterSdkPlugin.launch(
+                          final result = await DojahKyc.launch(
                               _widgetIdCtrl.text,
                               referenceId: _refIdCtrl.text.isNotEmpty
                                   ? _refIdCtrl.text

@@ -1,6 +1,6 @@
-# dojah_flutter_sdk_example
+# flutter_dojah_kyc_example
 
-Demonstrates how to use the dojah_flutter_sdk plugin.
+Demonstrates how to use the flutter_dojah_kyc plugin.
 
 ## Getting Started
 

@@ -1,7 +1,7 @@
-name: dojah_flutter_sdk
-description: "A new Flutter project."
+name: flutter_dojah_kyc
+description: "Dojah Kyc"
 version: 0.0.1
-homepage:
+homepage: https://dojah.io
 
 environment:
   sdk: ^3.5.4
@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
+  rename: ^3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -35,7 +36,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.dojah_flutter_sdk
+        package: com.dojah.flutter_dojah_kyc
         pluginClass: DojahFlutterSdkPlugin
       ios:
         pluginClass: DojahFlutterSdkPlugin
