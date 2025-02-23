@@ -1,4 +1,4 @@
-# Dojah KYC SDK (React Native)
+# Dojah KYC SDK (Flutter)
 
 
 ## Installation
