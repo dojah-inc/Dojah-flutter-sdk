@@ -21,10 +21,9 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    DojahKyc dojahFlutterSdkPlugin = DojahKyc();
     MockDojahFlutterSdkPlatform fakePlatform = MockDojahFlutterSdkPlatform();
     DojahFlutterSdkPlatform.instance = fakePlatform;
 
-    expect(await dojahFlutterSdkPlugin.launch(""), '42');
+    expect(await DojahKyc.launch(""), '42');
   });
 }

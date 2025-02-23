@@ -16,8 +16,7 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets('getPlatformVersion test', (WidgetTester tester) async {
-    final DojahKyc plugin = DojahKyc();
-    final String? version = await plugin.launch("widgetId");
+    final String? version = await DojahKyc.launch("widgetId");
     // The version string depends on the host platform running the test, so
     // just assert that some non-empty string is returned.
     expect(version?.isNotEmpty, true);
