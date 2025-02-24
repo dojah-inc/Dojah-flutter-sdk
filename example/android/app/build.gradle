@@ -29,18 +29,18 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
-//
-//    applicationVariants.all { variant ->
-//        variant.outputs.all { output ->
-//            def appName = "DojahFlutter"
-//            def versionName = variant.versionName
-//            def versionCode = variant.versionCode
-//
-//            output.outputFileName = "${appName}-v${versionName}.apk"
-//
-//            // output.outputFileName = newFileName
-//        }
-//    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def appName = "DojahFlutter"
+            def versionName = variant.versionName
+            def versionCode = variant.versionCode
+
+            output.outputFileName = "${appName}-v${versionName}.apk"
+
+            // output.outputFileName = newFileName
+        }
+    }
 
     buildTypes {
         release {
