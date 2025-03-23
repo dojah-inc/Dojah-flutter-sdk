@@ -1,7 +1,6 @@
 package com.dojah.flutter_dojah_kyc
 
 import android.content.Context
-import androidx.annotation.NonNull
 import com.dojah.kyc_sdk_kotlin.DojahSdk
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin

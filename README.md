@@ -20,13 +20,6 @@ allprojects {
     repositories {
         ...
         maven { url "https://jitpack.io" }
-        maven {
-            url = uri("https://maven.pkg.github.com/dojah-inc/sdk-kotlin")
-            credentials {
-                username = "dojah-inc"
-                password = "[TO BE ADDED SOON]"
-            }
-        }
     }
 }
 ```
@@ -38,13 +31,6 @@ dependencyResolutionManagement {
     repositories {
         ...
         maven { url "https://jitpack.io" }
-        maven {
-            url = uri("https://maven.pkg.github.com/dojah-inc/sdk-kotlin")
-            credentials {
-                username = "dojah-inc"
-                password = "[TO BE ADDED SOON]"
-            }
-        }
     }
 }
 ```
@@ -77,25 +63,7 @@ and run pod install in your ios folder:
 ```sh
 cd ios
 pod install
-``` 
-
-
-### Make some few changes in your AppDelegate.mm file
-
-- Add the following imports:
-
-```objective-c
-
 ```
-
-- Then replace application function in your AppDelegate with the following:
-
-`REMEMBER TO CHANGE THE Your App Name,to the actual name of your App`
-
-```objective-c
-
-```
-
 
 
 ### Permissions

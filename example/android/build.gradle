@@ -1,21 +1,9 @@
-def properties = new Properties()
-file("local.properties").withInputStream { properties.load(it) }
-
-def dojah_name = properties["Dojah_NAME"]
-def dojah_pass = properties["Dojah_PASS"]
 
 allprojects {
     repositories {
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }
-        maven {
-            url = uri("https://maven.pkg.github.com/dojah-inc/sdk-kotlin")
-            credentials {
-                username = dojah_name
-                password = dojah_pass
-            }
-        }
     }
 }
 

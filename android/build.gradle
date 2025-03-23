@@ -2,13 +2,6 @@ group = "com.dojah.flutter_dojah_kyc"
 version = "1.0-SNAPSHOT"
 
 
-def gitPackagePropertiesFile = rootProject.file("local.properties")
-def localProperties = new Properties()
-localProperties.load(new FileInputStream(gitPackagePropertiesFile))
-
-def dojah_name = localProperties["Dojah_NAME"]
-def dojah_pass = localProperties["Dojah_PASS"]
-
 buildscript {
     ext.kotlin_version = "1.8.22"
     repositories {
@@ -20,20 +13,6 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:8.1.0")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url = uri("https://maven.pkg.github.com/dojah-inc/sdk-kotlin")
-            credentials {
-                username = dojah_name
-                password = dojah_pass
-            }
-        }
     }
 }
 
@@ -74,22 +53,13 @@ android {
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }
-        maven {
-            url = uri("https://maven.pkg.github.com/dojah-inc/sdk-kotlin")
-            credentials {
-                username = dojah_name
-                password = dojah_pass
-            }
-        }
     }
 
     dependencies {
         testImplementation("org.jetbrains.kotlin:kotlin-test")
         testImplementation("org.mockito:mockito-core:5.0.0")
-//        implementation ("com.dojah_inc:dojah_android_sdk:dev-0.1.6")
-        implementation ("com.dojah_inc:dojah_android_sdk:dev-0.1.8")
-//        implementation ("com.dojah.kyc_sdk_kotlin:0.0.1")
-//        implementation ("com.dojah_inc.kyc_sdk_kotlin:0.0.1")
+        implementation 'com.github.dojah-inc:sdk-kotlin:v0.0.3'
+//        implementation 'com.github.dojah-inc:sdk-kotlin:v0.1.1-dev'
     }
 
     testOptions {
