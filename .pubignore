@@ -1,3 +1,6 @@
+# Don't publish the example folder, but keep it in Git
+example/
+
 # Miscellaneous
 *.class
 *.log
@@ -10,26 +13,20 @@
 .svn/
 migrate_working_dir/
 
-# IntelliJ related
+# IDE-specific
+.idea/
 *.iml
 *.ipr
 *.iws
-.idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# VSCode
+.vscode/
 
-# Flutter/Dart/Pub related
-# Libraries should not include pubspec.lock, per https://dart.dev/guides/libraries/private-files#pubspeclock.
-/pubspec.lock
-**/doc/api/
+# Flutter/Dart/Pub
 .dart_tool/
 build/
+/pubspec.lock
+**/doc/api/
 
-# FVM Version Cache
+# FVM
 .fvm/
-
-# Ignore the entire example folder
-example/
