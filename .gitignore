@@ -30,3 +30,8 @@ build/
 
 # FVM Version Cache
 .fvm/
+
+
+# Ignore generated iOS files in example app
+example/ios/Runner/GeneratedPluginRegistrant.h
+example/ios/Runner/GeneratedPluginRegistrant.m
