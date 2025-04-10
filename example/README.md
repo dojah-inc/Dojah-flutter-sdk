@@ -126,3 +126,17 @@ To use the SDK, you need a WidgetID, which is a required parameter for initializ
 
 7. Copy Your Widget ID: After publishing, the platform will generate a Widget ID. Copy this Widget ID as you will need it to initialize the SDK as stated above.
 ```
+
+
+## Example Application
+
+- [Example Native App] (https://github.com/dojah-inc/Dojah-flutter-sdk/tree/main/example)
+
+
+## Contributing
+- [KYC WIDGET Repository] (https://github.com/dojah-inc/Dojah-flutter-sdk)
+- Fork it!
+- Create your feature branch: `git checkout -b feature/feature-name`
+- Commit your changes: `git commit -am 'Some commit message'`
+- Push to the branch: `git push origin feature/feature-name`
+- Submit a pull request 😉😉
