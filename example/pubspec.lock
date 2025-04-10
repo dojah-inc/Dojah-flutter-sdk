@@ -57,6 +57,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
+  dojah_kyc_sdk_flutter:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -78,13 +85,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_dojah_kyc:
-    dependency: "direct main"
-    description:
-      path: ".."
-      relative: true
-    source: path
-    version: "0.0.1"
   flutter_driver:
     dependency: transitive
     description: flutter

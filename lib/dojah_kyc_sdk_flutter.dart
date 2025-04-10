@@ -1,4 +1,4 @@
-import 'flutter_dojah_kyc_platform_interface.dart';
+import 'package:dojah_kyc_sdk_flutter/dojah_kyc_sdk_flutter_platform_interface.dart';
 
 class DojahKyc {
   static Future<String?> launch(String widgetId,

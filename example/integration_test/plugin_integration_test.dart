@@ -10,7 +10,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
-import 'package:flutter_dojah_kyc/flutter_dojah_kyc.dart';
+import 'package:dojah_kyc_sdk_flutter/dojah_kyc_sdk_flutter.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

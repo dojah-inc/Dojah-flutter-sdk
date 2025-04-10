@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:flutter_dojah_kyc/flutter_dojah_kyc.dart';
+import 'package:dojah_kyc_sdk_flutter/dojah_kyc_sdk_flutter.dart';
 
 void main() {
   runApp(const MyApp());

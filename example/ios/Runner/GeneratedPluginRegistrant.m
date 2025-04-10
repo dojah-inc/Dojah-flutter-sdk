@@ -6,10 +6,10 @@
 
 #import "GeneratedPluginRegistrant.h"
 
-#if __has_include(<flutter_dojah_kyc/DojahFlutterSdkPlugin.h>)
-#import <flutter_dojah_kyc/DojahFlutterSdkPlugin.h>
+#if __has_include(<dojah_kyc_sdk_flutter/DojahFlutterSdkPlugin.h>)
+#import <dojah_kyc_sdk_flutter/DojahFlutterSdkPlugin.h>
 #else
-@import flutter_dojah_kyc;
+@import dojah_kyc_sdk_flutter;
 #endif
 
 #if __has_include(<integration_test/IntegrationTestPlugin.h>)

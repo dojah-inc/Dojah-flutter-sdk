@@ -1,4 +1,4 @@
-name: flutter_dojah_kyc
+name: dojah_kyc_sdk_flutter
 description: "Dojah Kyc"
 version: 0.0.1
 homepage: https://dojah.io
@@ -36,7 +36,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.dojah.flutter_dojah_kyc
+        package: com.dojah.dojah_kyc_sdk_flutter
         pluginClass: DojahFlutterSdkPlugin
       ios:
         pluginClass: DojahFlutterSdkPlugin

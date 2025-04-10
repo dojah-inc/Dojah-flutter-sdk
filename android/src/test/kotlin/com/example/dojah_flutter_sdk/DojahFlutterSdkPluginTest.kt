@@ -1,4 +1,4 @@
-package com.dojah.flutter_dojah_kyc
+package com.dojah.dojah_kyc_sdk_flutter
 
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel

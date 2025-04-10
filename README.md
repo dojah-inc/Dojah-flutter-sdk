@@ -4,7 +4,7 @@
 ## Installation
 
 ```sh
- $ flutter pub add flutter_dojah_kyc
+ $ flutter pub add dojah_kyc_sdk_flutter
 ```
 
 ## Android Setup
@@ -82,7 +82,7 @@ NSLocationWhenInUseUsageDescription - describe why your app needs access to the 
 To start KYC, import Dojah in your React Native code, and launch Dojah Screen
 
 ```dart
-import 'package:flutter_dojah_kyc/flutter_dojah_kyc.dart';
+import 'package:dojah_kyc_sdk_flutter/dojah_kyc_sdk_flutter.dart';
 
 DojahKyc.launch(
   "{Required: Your_WidgetID}",

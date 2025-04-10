@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import 'flutter_dojah_kyc_platform_interface.dart';
+import 'dojah_kyc_sdk_flutter_platform_interface.dart';
 
 /// An implementation of [DojahFlutterSdkPlatform] that uses method channels.
 class MethodChannelDojahFlutterSdk extends DojahFlutterSdkPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('flutter_dojah_kyc');
+  final methodChannel = const MethodChannel('dojah_kyc_sdk_flutter');
 
   @override
   Future<String?> launchDojah(String widgetId,

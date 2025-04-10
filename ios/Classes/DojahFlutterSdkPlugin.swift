@@ -5,7 +5,7 @@ import DojahWidget
 
 public class DojahFlutterSdkPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
-        let channel = FlutterMethodChannel(name: "flutter_dojah_kyc", binaryMessenger: registrar.messenger())
+        let channel = FlutterMethodChannel(name: "dojah_kyc_sdk_flutter", binaryMessenger: registrar.messenger())
         let instance = DojahFlutterSdkPlugin()
         
         registrar.addMethodCallDelegate(instance, channel: channel)
