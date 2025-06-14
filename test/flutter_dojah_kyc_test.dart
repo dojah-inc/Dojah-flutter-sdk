@@ -1,3 +1,4 @@
+import 'package:dojah_kyc_sdk_flutter/dojah_extra_flutter_data.dart';
 import 'package:dojah_kyc_sdk_flutter/dojah_kyc_sdk_flutter.dart';
 import 'package:dojah_kyc_sdk_flutter/dojah_kyc_sdk_flutter_method_channel.dart';
 import 'package:dojah_kyc_sdk_flutter/dojah_kyc_sdk_flutter_platform_interface.dart';
@@ -10,7 +11,7 @@ class MockDojahFlutterSdkPlatform
 
   @override
   Future<String?> launchDojah(String widgetId,
-      {String? referenceId, String? email}) => Future.value('42');
+      {String? referenceId, String? email,ExtraUserData? extraData}) => Future.value('42');
 }
 
 void main() {

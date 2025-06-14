@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dojah_kyc_sdk_flutter/dojah_extra_flutter_data.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -20,7 +21,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final TextEditingController _widgetIdCtrl = TextEditingController(text: "6752c1e8d6958d1c550466e5");
+  final TextEditingController _widgetIdCtrl =
+      TextEditingController(text: "67a31733f84e4cd6ffbcf06a");
   final TextEditingController _refIdCtrl = TextEditingController(text: null);
   final TextEditingController _emailCtrl = TextEditingController(text: null);
 
@@ -64,7 +66,8 @@ class _MyAppState extends State<MyApp> {
                     controller: _widgetIdCtrl,
                     keyboardType: TextInputType.text,
                     decoration: inputDecoration.copyWith(
-                        prefixIcon: const Icon(Icons.ac_unit_sharp),hintText: "Enter Widget Id"),
+                        prefixIcon: const Icon(Icons.ac_unit_sharp),
+                        hintText: "Enter Widget Id"),
                   ),
                 ),
                 const SizedBox(
@@ -73,7 +76,8 @@ class _MyAppState extends State<MyApp> {
                 TextFormField(
                   controller: _refIdCtrl,
                   decoration: inputDecoration.copyWith(
-                      prefixIcon: const Icon(Icons.text_fields_rounded),hintText: "Enter Reference Id"),
+                      prefixIcon: const Icon(Icons.text_fields_rounded),
+                      hintText: "Enter Reference Id"),
                 ),
                 const SizedBox(
                   height: 12,
@@ -82,7 +86,8 @@ class _MyAppState extends State<MyApp> {
                   controller: _emailCtrl,
                   keyboardType: TextInputType.emailAddress,
                   decoration: inputDecoration.copyWith(
-                      prefixIcon: const Icon(Icons.alternate_email),hintText: "Enter Email"),
+                      prefixIcon: const Icon(Icons.alternate_email),
+                      hintText: "Enter Email"),
                 ),
                 const SizedBox(
                   height: 16,
@@ -97,6 +102,7 @@ class _MyAppState extends State<MyApp> {
                                   BorderRadius.circular(inputRadius))),
                       onPressed: () async {
                         try {
+                          log("start launching");
                           final result = await DojahKyc.launch(
                               _widgetIdCtrl.text,
                               referenceId: _refIdCtrl.text.isNotEmpty
@@ -104,7 +110,16 @@ class _MyAppState extends State<MyApp> {
                                   : null,
                               email: _emailCtrl.text.isNotEmpty
                                   ? _emailCtrl.text
-                                  : null);
+                                  : null,
+                              extraUserData: ExtraUserData(
+                                // userData: UserData(firstName: "Ola",lastName: "Shittu",dob: "12-03-1995"),
+                                govData: GovData(bvn: "12345678901"),
+                                // govId: GovId(national: ""),
+                                // location: Location(latitude: "32323"),
+                                // businessData: BusinessData(cac: "1234567890"),
+                                // address: "Isale Eko",
+                                // metadata: {"key": "value"},
+                              ));
                           log("result is $result");
                         } on PlatformException {
                           log("platform error");

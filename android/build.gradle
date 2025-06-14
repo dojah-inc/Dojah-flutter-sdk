@@ -1,4 +1,4 @@
-group = "com.dojah.dojah_kyc_sdk_flutter"
+group = "com.dojah.flutter_dojah_kyc"
 version = "1.0-SNAPSHOT"
 
 
@@ -22,6 +22,7 @@ apply plugin: "kotlin-android"
 android {
     if (project.android.hasProperty("namespace")) {
         namespace = "com.dojah.dojah_kyc_sdk_flutter"
+        //com.dojah.dojah_kyc_sdk_flutter
     }
 
     compileSdk = 35
@@ -58,8 +59,8 @@ android {
     dependencies {
         testImplementation("org.jetbrains.kotlin:kotlin-test")
         testImplementation("org.mockito:mockito-core:5.0.0")
-//        implementation 'com.github.dojah-inc:sdk-kotlin:v0.0.4'
         implementation 'com.github.dojah-inc:sdk-kotlin:v0.0.4-dev'
+//        implementation 'com.github.dojah-inc:sdk-kotlin:v0.1.1-dev'
     }
 
     testOptions {
@@ -73,8 +74,4 @@ android {
             }
         }
     }
-}
-
-dependencies {
-    implementation 'androidx.activity:activity-ktx:1.10.1'
 }

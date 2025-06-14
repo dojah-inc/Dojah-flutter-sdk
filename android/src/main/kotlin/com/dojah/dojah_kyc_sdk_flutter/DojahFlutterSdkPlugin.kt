@@ -1,9 +1,15 @@
 package com.dojah.dojah_kyc_sdk_flutter
 
+import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.app.Instrumentation
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import com.dojah.kyc_sdk_kotlin.DOJAH_CLOSED_RESULT
+import com.dojah.kyc_sdk_kotlin.DOJAH_RESULT_KEY
 import com.dojah.kyc_sdk_kotlin.DojahSdk
 import com.dojah.kyc_sdk_kotlin.domain.BusinessData
 import com.dojah.kyc_sdk_kotlin.domain.ExtraUserData
@@ -13,28 +19,26 @@ import com.dojah.kyc_sdk_kotlin.domain.Location
 import com.dojah.kyc_sdk_kotlin.domain.UserData
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
+import io.flutter.embedding.engine.plugins.activity.ActivityAware
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
+import io.flutter.plugin.common.PluginRegistry
 import java.io.Serializable
 
 /** DojahFlutterSdkPlugin */
-class DojahFlutterSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
+class DojahFlutterSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
+    PluginRegistry.ActivityResultListener {
     /// The MethodChannel that will the communication between Flutter and native Android
     ///
     /// This local reference serves to register the plugin with the Flutter Engine and unregister it
     /// when the Flutter Engine is detached from the Activity
     private lateinit var channel: MethodChannel
     private lateinit var context: Context
-
-    private val dojahResultLauncher: ActivityResultLauncher<Intent> =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult: Instrumentation.ActivityResult ->
-            if (activityResult.resultCode == RESULT_OK) {
-                HttpLoggingInterceptor.Logger.DEFAULT.log("Got Result: ${activityResult.data}")
-                channel.
-            }
-        }
+    private var activity: Activity? = null
+    private lateinit var result: Result
 
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
@@ -45,6 +49,7 @@ class DojahFlutterSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
 
     override fun onMethodCall(call: MethodCall, result: Result) {
+        this.result = result
         if (call.method == "launch-dojah") {
 
             try {
@@ -52,15 +57,17 @@ class DojahFlutterSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                 val referenceId = call.argument<String>("reference_id")
                 val email = call.argument<String>("email")
                 val extraUserData = call.argument<Map<String, Any>>("extra_user_data")
-                val
-                DojahSdk.with(context).launch(
-                    widgetId!!,
-                    referenceId,
-                    email,
-                    dojahResultLauncher,
-                   mapToExtraUserData(extraUserData)
-                )
-                result.success("Success")
+//                val
+                if (activity != null) {
+                    DojahSdk.with(context).launchWithBackwardCompatibility(
+                        activity!!,
+                        widgetId!!,
+                        referenceId,
+                        email,
+                        extraUserData?.let { mapToExtraUserData(it) }?:ExtraUserData()
+                    )
+                }
+//                result.success("Success")
             } catch (e: Exception) {
                 result.success(e.message)
             }
@@ -72,17 +79,53 @@ class DojahFlutterSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         channel.setMethodCallHandler(null)
     }
+
+    override fun onAttachedToActivity(binding: ActivityPluginBinding) {
+        activity = binding.activity
+        binding.addActivityResultListener(this)
+    }
+
+    override fun onDetachedFromActivityForConfigChanges() {
+        activity = null
+    }
+
+    override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
+        activity = binding.activity
+        binding.addActivityResultListener(this)
+    }
+
+    override fun onDetachedFromActivity() {
+        activity = null
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
+        if (requestCode == 1001) {
+            Log.d("DojahFlutterSdkPlugin", "Got Result: $data")
+            if (resultCode == RESULT_OK) {
+                data?.getStringExtra(DOJAH_RESULT_KEY)?.let {
+                    result.success(it)
+                    Log.d("DojahFlutterSdkPlugin", "Got Result: $it")
+                }
+            } else {
+                result.success(DOJAH_CLOSED_RESULT)
+            }
+        }
+
+        return false
+    }
+
 }
+
 /**
  * Helper function to convert a Map<String, Any?> from Dart
  * into your Kotlin ExtraUserData object.
  */
 private fun mapToExtraUserData(map: Map<String, Any?>): ExtraUserData {
-    val userDataMap = map["userData"] as? Map<String, Any?>
-    val govDataMap = map["govData"] as? Map<String, Any?>
-    val govIdMap = map["govId"] as? Map<String, Any?>
-    val locationMap = map["location"] as? Map<String, Any?>
-    val businessDataMap = map["businessData"] as? Map<String, Any?>
+    val userDataMap = map["userData"] as? Map<*, *>
+    val govDataMap = map["govData"] as? Map<*, *>
+    val govIdMap = map["govId"] as? Map<*, *>
+    val locationMap = map["location"] as? Map<*, *>
+    val businessDataMap = map["businessData"] as? Map<*, *>
     val address = map["address"] as? String
     val metadata = map["metadata"] as? Map<String, Any> // Assuming metadata values are not null
 
