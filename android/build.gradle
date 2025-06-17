@@ -22,6 +22,7 @@ apply plugin: "kotlin-android"
 android {
     if (project.android.hasProperty("namespace")) {
         namespace = "com.dojah.dojah_kyc_sdk_flutter"
+        //com.dojah.dojah_kyc_sdk_flutter
     }
 
     compileSdk = 35
@@ -45,6 +46,8 @@ android {
     }
     buildTypes {
         release {
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+
             minifyEnabled true
         }
     }
@@ -58,8 +61,8 @@ android {
     dependencies {
         testImplementation("org.jetbrains.kotlin:kotlin-test")
         testImplementation("org.mockito:mockito-core:5.0.0")
-        implementation 'com.github.dojah-inc:sdk-kotlin:v0.0.2'
-//        implementation 'com.github.dojah-inc:sdk-kotlin:v0.0.02-dev'
+        implementation 'com.github.dojah-inc:sdk-kotlin:v0.0.4-dev'
+//        implementation 'com.github.dojah-inc:sdk-kotlin:v0.1.1-dev'
     }
 
     testOptions {

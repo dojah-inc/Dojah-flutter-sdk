@@ -1,5 +1,6 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
+import 'dojah_extra_flutter_data.dart';
 import 'dojah_kyc_sdk_flutter_method_channel.dart';
 
 abstract class DojahFlutterSdkPlatform extends PlatformInterface {
@@ -24,7 +25,7 @@ abstract class DojahFlutterSdkPlatform extends PlatformInterface {
   }
 
   Future<String?> launchDojah(String widgetId,
-      {String? referenceId, String? email}) {
+      {String? referenceId, String? email,ExtraUserData? extraData}) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 }
