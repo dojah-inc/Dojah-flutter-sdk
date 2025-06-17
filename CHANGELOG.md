@@ -1,4 +1,4 @@
-## 0.0.2
+## 0.0.3
 
 * MIT License and Example Application
 
