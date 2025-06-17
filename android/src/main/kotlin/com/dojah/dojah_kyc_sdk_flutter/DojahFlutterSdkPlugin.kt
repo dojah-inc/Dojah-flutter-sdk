@@ -38,7 +38,7 @@ class DojahFlutterSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
     private lateinit var channel: MethodChannel
     private lateinit var context: Context
     private var activity: Activity? = null
-    private lateinit var result: Result
+    private var result: Result? = null
 
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
@@ -49,6 +49,7 @@ class DojahFlutterSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
 
 
     override fun onMethodCall(call: MethodCall, result: Result) {
+        print("onMethodCall -> called!")
         this.result = result
         if (call.method == "launch-dojah") {
 
@@ -69,10 +70,11 @@ class DojahFlutterSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
                 }
 //                result.success("Success")
             } catch (e: Exception) {
-                result.success(e.message)
+                result?.success(e.message)
             }
         } else {
-            result.notImplemented()
+            print("NOT_IMPLEMENT -> else case")
+            result?.notImplemented()
         }
     }
 
@@ -103,11 +105,11 @@ class DojahFlutterSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
             Log.d("DojahFlutterSdkPlugin", "Got Result: $data")
             if (resultCode == RESULT_OK) {
                 data?.getStringExtra(DOJAH_RESULT_KEY)?.let {
-                    result.success(it)
+                    result?.success(it)
                     Log.d("DojahFlutterSdkPlugin", "Got Result: $it")
                 }
             } else {
-                result.success(DOJAH_CLOSED_RESULT)
+                result?.success(DOJAH_CLOSED_RESULT)
             }
         }
 
