@@ -1,6 +1,10 @@
 ## 0.0.3
 
-* MIT License and Example Application
+* Untrack generated iOS plugin registration files
+
+## 0.0.2
+
+* Fixed App crashes on iOS in release mode
 
 ## 0.0.1
 
