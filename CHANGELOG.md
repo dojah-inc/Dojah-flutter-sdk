@@ -1,3 +1,8 @@
+## 0.0.4
+* AES encryption all media files before uploading to Dojah servers
+* Added support for OTP verification channels (SMS, EMAIL, WHATSAPP)
+* Fixed issue with email screen always showing up even when email is not required
+
 ## 0.0.3
 
 * Untrack generated iOS plugin registration files

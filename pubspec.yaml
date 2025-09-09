@@ -1,6 +1,6 @@
 name: dojah_kyc_sdk_flutter
 description: "Dojah helps businesses verify identity, beat fraud, stay compliant and onboard customers safely."
-version: 0.0.3
+version: 0.0.4
 homepage: https://dojah.io
 
 environment:
@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.0.2
-  rename: ^3.0.2
+  plugin_platform_interface: ^2.1.8
+  rename: ^3.1.0
 
 dev_dependencies:
   flutter_test:
