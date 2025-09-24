@@ -1,3 +1,6 @@
+## 0.0.5
+* Fixed issue with AES encryption for all media files before uploading to Dojah servers
+
 ## 0.0.4
 * AES encryption all media files before uploading to Dojah servers
 * Added support for OTP verification channels (SMS, EMAIL, WHATSAPP)
