@@ -5,9 +5,9 @@
 Pod::Spec.new do |s|
   s.name             = 'dojah_kyc_sdk_flutter'
   s.version          = '0.0.2'
-  s.summary          = 'A new Flutter project.'
+  s.summary          = 'Dojah KYC SDK for Flutter'
   s.description      = <<-DESC
-A new Flutter project.
+Dojah KYC SDK for Flutter.
                        DESC
   s.homepage         = 'http://example.com'
   s.license          = { :file => '../LICENSE' }
