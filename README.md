@@ -79,7 +79,7 @@ NSLocationWhenInUseUsageDescription - describe why your app needs access to the 
 
 ## Usage
 
-To start KYC, import Dojah in your React Native code, and launch Dojah Screen
+To start KYC, import Dojah in your Flutter code, and launch Dojah Screen.
 
 ```dart
 import 'package:dojah_kyc_sdk_flutter/dojah_kyc_sdk_flutter.dart';
