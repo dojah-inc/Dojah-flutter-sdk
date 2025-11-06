@@ -1,3 +1,9 @@
+## 0.0.6
+* Updated Dojah Android SDK version to v0.1.8
+* Implemented Face detection liveness check
+* Updated liveness check UI for better user experience
+* Fixed minor performance issues
+
 ## 0.0.5
 * Fixed issue with AES encryption for all media files before uploading to Dojah servers
 

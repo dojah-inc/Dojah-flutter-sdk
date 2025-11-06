@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'dojah_kyc_sdk_flutter'
-  s.version          = '0.0.2'
+  s.version          = '0.0.5'
   s.summary          = 'Dojah KYC SDK for Flutter'
   s.description      = <<-DESC
 Dojah KYC SDK for Flutter.
