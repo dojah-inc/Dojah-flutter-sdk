@@ -1,3 +1,6 @@
+### 0.0.8
+* Fixed build error on iOS initialization
+
 ## 0.0.7
 * Updated Dojah Android SDK version to v0.1.9
 * Added support for source tag on SDK init
