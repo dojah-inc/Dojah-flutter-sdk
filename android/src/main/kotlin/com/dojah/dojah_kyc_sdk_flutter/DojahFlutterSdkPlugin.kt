@@ -29,6 +29,7 @@ import io.flutter.plugin.common.PluginRegistry
 import java.io.Serializable
 
 /** DojahFlutterSdkPlugin */
+private const val ANDROID_FLUTTER = "android_flutter"
 class DojahFlutterSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
     PluginRegistry.ActivityResultListener {
     /// The MethodChannel that will the communication between Flutter and native Android
@@ -60,7 +61,7 @@ class DojahFlutterSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
                 val extraUserData = call.argument<Map<String, Any>>("extra_user_data")
 //                val
                 if (activity != null) {
-                    DojahSdk.with(context).launchWithBackwardCompatibility(
+                    DojahSdk.with(context, ANDROID_FLUTTER).launchWithBackwardCompatibility(
                         activity!!,
                         widgetId!!,
                         referenceId,
