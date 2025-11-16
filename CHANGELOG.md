@@ -1,3 +1,8 @@
+## 0.0.7
+* Updated Dojah Android SDK version to v0.1.9
+* Added support for source tag on SDK init
+* Fixed minor performance issues
+
 ## 0.0.6
 * Updated Dojah Android SDK version to v0.1.8
 * Implemented Face detection liveness check
