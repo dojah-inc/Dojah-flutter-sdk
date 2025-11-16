@@ -89,7 +89,13 @@ public class DojahFlutterSdkPlugin: NSObject, FlutterPlugin {
             rootNavController.delegate = navDelegate
 
             
-            DojahWidgetSDK.initialize(widgetID: widgetId!, referenceID: referenceId, emailAddress:email, extraUserData: mapToExtraUserData(from: extraUserData),navController: rootNavController, source: "ios_flutter")
+            DojahWidgetSDK.initialize(
+                widgetID: widgetId!,
+                referenceID: referenceId,
+                emailAddress:email,
+                extraUserData: mapToExtraUserData(from: extraUserData),
+                source: "ios_flutter",
+                navController: rootNavController)
             
 //            result("widgetId is: \(widgetId ?? "")")
         default:
