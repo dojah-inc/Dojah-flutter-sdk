@@ -33,7 +33,7 @@ target 'Runner' do
 #   use_frameworks!
   use_modular_headers!
   pod 'Realm', '~> 10.52.2', :modular_headers => true
-  pod 'DojahWidget', :git => 'https://github.com/dojah-inc/sdk-swift.git', :branch => 'pod-package'
+  pod 'DojahWidget', :git => 'https://github.com/dojah-inc/sdk-swift.git', :branch => 'pod-package-dev'
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
   target 'RunnerTests' do
@@ -46,7 +46,7 @@ post_install do |installer|
     flutter_additional_ios_build_settings(target)
     if target.name == 'lottie-ios' || target.name == 'HorizonCalendar'
         target.build_configurations.each do |config|
-          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
         end
       end
   end

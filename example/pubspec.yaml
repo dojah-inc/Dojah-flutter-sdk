@@ -17,6 +17,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_secure_storage: ^9.2.4
+  google_maps_flutter: ^2.14.0
   dojah_kyc_sdk_flutter:
     # When depending on this package from a real application you should use:
     #   dojah_kyc_sdk_flutter: ^x.y.z

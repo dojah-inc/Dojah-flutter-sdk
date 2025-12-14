@@ -2,159 +2,157 @@ import Flutter
 import UIKit
 import DojahWidget
 
-
+// MARK: - Navigation Delegate
 class DojahNavigationControllerDelegate: NSObject, UINavigationControllerDelegate {
     var onDidShow: (UIViewController) -> Void = { _ in }
-    func navigationController(_ navigationController: UINavigationController,
-                              didShow viewController: UIViewController,
-                              animated: Bool) {
-        print("Did show: \(viewController)")
+
+    func navigationController(
+        _ navigationController: UINavigationController,
+        didShow viewController: UIViewController,
+        animated: Bool
+    ) {
         onDidShow(viewController)
     }
 
-    func navigationController(_ navigationController: UINavigationController,
-                              willShow viewController: UIViewController,
-                              animated: Bool) {
-        print("Will show: \(viewController)")
-    }
-    
     func setOnDidShow(_ onDidShow: @escaping (UIViewController) -> Void) {
         self.onDidShow = onDidShow
     }
 }
 
+// MARK: - Plugin
 public class DojahFlutterSdkPlugin: NSObject, FlutterPlugin {
+
+    private let navDelegate = DojahNavigationControllerDelegate()
+    private var prevController: UIViewController?
+    private var flutterResult: FlutterResult?
+    private weak var modalNavController: UINavigationController?
+
+    // ✅ SAFE REGISTRATION
+    public static func register(with registrar: FlutterPluginRegistrar) {
+        let channel = FlutterMethodChannel(
+            name: "dojah_kyc_sdk_flutter",
+            binaryMessenger: registrar.messenger()
+        )
+        let instance = DojahFlutterSdkPlugin()
+        registrar.addMethodCallDelegate(instance, channel: channel)
+
+    }
     
-    let navDelegate = DojahNavigationControllerDelegate()
-    
-    var prevController:UIViewController? = nil
-    
-    
-    var result: FlutterResult?
-    
- 
-    
+    private func resolveSdkResult() {
+        let vStatus = DojahWidgetSDK.getVerificationResultStatus()
+        let status = vStatus.isEmpty ? "closed" : vStatus
+
+        self.flutterResult?(status)
+        self.prevController = nil
+
+        self.modalNavController?.dismiss(animated: true)
+        self.modalNavController = nil
+    }
+
+    // MARK: - Method Handler
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        self.result = result
-    
-        
-    
+        self.flutterResult = result
+
         switch call.method {
         case "launch-dojah":
-            
-            guard let rootNavController = getRootViewController() as? UINavigationController  else {
-                result(FlutterError(code: "NAV_ERROR", message: "Root view controller is not a navigation controller", details: nil))
+
+            guard let rootVC = getRootViewController() else {
+                result(FlutterError(code: "NAV_ERROR",
+                                    message: "No root view controller found",
+                                    details: nil))
                 return
             }
 
-            print("b4 setOnDidShow")
-
-            
-            
             guard let args = call.arguments as? [String: Any] else {
-                result(FlutterError(code: "INVALID_ARGUMENTS", message: "Arguments are not valid", details: nil))
+                result(FlutterError(code: "INVALID_ARGUMENTS",
+                                    message: "Arguments are not valid",
+                                    details: nil))
                 return
             }
-            
+
             let widgetId = args["widget_id"] as? String
             let referenceId = args["reference_id"] as? String
             let email = args["email"] as? String
-            
             let extraUserData = args["extra_user_data"] as? [String: Any]
-           
-            if(widgetId == nil){
+
+            guard let validWidgetId = widgetId else {
                 result("widget_id can't be null")
                 return
             }
 
-            navDelegate.setOnDidShow { vc in
-                print("onDidShow: \(vc)")
-                //return result from DojahWidget once verification
-                //is done,failed or cancel
-                if(!String(describing:vc).contains("DojahWidget")){
-                    let vStatus = DojahWidgetSDK.getVerificationResultStatus()
-                    let status = if(vStatus.isEmpty){  "closed"} else {vStatus}
-                    if(self.result != nil){
-                        self.result!(status)
-                    }
-                    self.prevController = nil
-                }else if(String(describing:vc).contains("DojahWidget.DJDisclaimer")
-                         && self.prevController != nil){
-                    rootNavController.popToRootViewController(animated: false)
-                }else if(!String(describing:vc).contains("DojahWidget.SDKInitViewController")){
+            // ✅ CREATE MODAL NAV CONTROLLER
+            let dojahNavController = UINavigationController()
+            dojahNavController.modalPresentationStyle = .fullScreen
+            self.modalNavController = dojahNavController
+
+            // ✅ PRESENT MODALLY
+            rootVC.present(dojahNavController, animated: true)
+
+            // ✅ TRACK DOJAH FLOW SAFELY
+            navDelegate.setOnDidShow { [weak self] vc in
+                guard let self = self else { return }
+                let vcName = String(describing: vc)
+                
+                print("Dojah result status 123: \(vcName)")
+                
+                if !vcName.contains("DojahWidget") {
+                    resolveSdkResult()
+                }
+                else if vcName.contains("DojahWidget.DJDisclaimer"),
+                        self.prevController != nil {
+                    self.modalNavController?.popToRootViewController(animated: false)
+                }
+                else if !vcName.contains("DojahWidget.SDKInitViewController") {
                     self.prevController = vc
+                } else {
+                    resolveSdkResult()
                 }
             }
-            
-            rootNavController.delegate = navDelegate
 
-            
+            dojahNavController.delegate = navDelegate
+
+            // ✅ DETECT MODAL DISMISSAL (FOR CANCEL)
+            dojahNavController.presentationController?.delegate = self
+
+            // ✅ SAFE SDK INIT
             DojahWidgetSDK.initialize(
-                widgetID: widgetId!,
+                widgetID: validWidgetId,
                 referenceID: referenceId,
-                emailAddress:email,
+                emailAddress: email,
                 extraUserData: mapToExtraUserData(from: extraUserData),
                 source: "ios_flutter",
-                navController: rootNavController)
-            
-//            result("widgetId is: \(widgetId ?? "")")
+                navController: dojahNavController
+            )
+
         default:
             result(FlutterMethodNotImplemented)
         }
     }
-    
-    
-    public static func register(with registrar: FlutterPluginRegistrar) {
-        let channel = FlutterMethodChannel(name: "dojah_kyc_sdk_flutter", binaryMessenger: registrar.messenger())
-        let instance = DojahFlutterSdkPlugin()
-        
-        registrar.addMethodCallDelegate(instance, channel: channel)
-        
-        // Step 4: Ensure we are modifying the UI on the main thread
-        // Safely get the app delegate
-        guard let appDelegate = UIApplication.shared.delegate as? FlutterAppDelegate else {
-            print("AppDelegate is not of type FlutterAppDelegate")
-            return
-        }
-        
-        // Check if the root view controller is already a UINavigationController
-        if let navigationController = appDelegate.window?.rootViewController as? UINavigationController {
-            // If it is, do nothing (already set up)
-            print("UINavigationController is already set up")
 
-        } else {
-            // If not, create a new UINavigationController with FlutterViewController as the root
-            let flutterViewController = appDelegate.window?.rootViewController as? FlutterViewController ?? FlutterViewController()
-            let navigationController = UINavigationController(rootViewController: flutterViewController)
-            
-            // Hide the navigation bar if desired
-            navigationController.isNavigationBarHidden = true
-            
-            // Assign the navigation controller as the root view controller
-            appDelegate.window?.rootViewController = navigationController
-            appDelegate.window?.makeKeyAndVisible()
-        }
-        
-    }
-    
+    // MARK: - Scene-Safe Root Controller Getter
     private func getRootViewController() -> UIViewController? {
-        // Safely get the root view controller (compatible with iOS 13+)
-        if #available(iOS 13.0, *) {
-            let scenes = UIApplication.shared.connectedScenes
-            let windowScene = scenes.first as? UIWindowScene
-            let window = windowScene?.windows.first(where: { $0.isKeyWindow })
-            return window?.rootViewController
-        } else {
-            // Fallback for earlier iOS versions
-            return UIApplication.shared.keyWindow?.rootViewController
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = scene.windows.first(where: { $0.isKeyWindow }) {
+            return window.rootViewController
         }
+        return nil
     }
 }
 
-// Helper function to convert [String: Any] to ExtraUserData
+// MARK: - Modal Dismissal Handling
+extension DojahFlutterSdkPlugin: UIAdaptivePresentationControllerDelegate {
+    public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        let vStatus = DojahWidgetSDK.getVerificationResultStatus()
+        let status = vStatus.isEmpty ? "closed" : vStatus
+        flutterResult?(status)
+        flutterResult = nil
+        modalNavController = nil
+    }
+}
+
+// MARK: - Data Mapping Helpers
 func mapToExtraUserData(from dictionary: [String: Any]?) -> ExtraUserData? {
     guard let extraUserData = dictionary else { return nil }
-    
     return ExtraUserData(
         userData: mapToUserBioData(from: extraUserData["userData"] as? [String: Any]),
         govData: mapToExtraGovData(from: extraUserData["govData"] as? [String: Any]),
@@ -166,10 +164,8 @@ func mapToExtraUserData(from dictionary: [String: Any]?) -> ExtraUserData? {
     )
 }
 
-// Mapping functions for each sub-struct
 func mapToUserBioData(from dictionary: [String: Any]?) -> UserBioData? {
     guard let userData = dictionary else { return nil }
-    
     return UserBioData(
         firstName: userData["first_name"] as? String,
         lastName: userData["last_name"] as? String,
@@ -180,7 +176,6 @@ func mapToUserBioData(from dictionary: [String: Any]?) -> UserBioData? {
 
 func mapToExtraGovData(from dictionary: [String: Any]?) -> ExtraGovData? {
     guard let govData = dictionary else { return nil }
-    
     return ExtraGovData(
         bvn: govData["bvn"] as? String,
         dl: govData["dl"] as? String,
@@ -191,7 +186,6 @@ func mapToExtraGovData(from dictionary: [String: Any]?) -> ExtraGovData? {
 
 func mapToExtraGovIdData(from dictionary: [String: Any]?) -> ExtraGovIdData? {
     guard let govId = dictionary else { return nil }
-    
     return ExtraGovIdData(
         national: govId["national"] as? String,
         passport: govId["passport"] as? String,
@@ -204,7 +198,6 @@ func mapToExtraGovIdData(from dictionary: [String: Any]?) -> ExtraGovIdData? {
 
 func mapToExtraLocationData(from dictionary: [String: Any]?) -> ExtraLocationData? {
     guard let location = dictionary else { return nil }
-    
     return ExtraLocationData(
         longitude: location["longitude"] as? String,
         latitude: location["latitude"] as? String
@@ -213,7 +206,6 @@ func mapToExtraLocationData(from dictionary: [String: Any]?) -> ExtraLocationDat
 
 func mapToExtraBusinessData(from dictionary: [String: Any]?) -> ExtraBusinessData? {
     guard let businessData = dictionary else { return nil }
-    
     return ExtraBusinessData(
         cac: businessData["cac"] as? String
     )

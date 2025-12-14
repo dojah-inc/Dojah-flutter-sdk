@@ -17,6 +17,7 @@ Dojah KYC SDK for Flutter.
   s.dependency 'Flutter'
   s.platform = :ios, '14.0'
   s.swift_version = '5.0'
+  s.static_framework = true
   s.dependency 'DojahWidget'
 #   s.source_files = "ios/Classes/**/*.{h,m,mm,swift}"
 

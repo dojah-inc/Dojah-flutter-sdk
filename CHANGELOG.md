@@ -1,3 +1,8 @@
+### 0.0.9
+* Fixed issue with IOS static library linkage
+* Added device fingerprint to SDK info configuration
+* Integrated Microsoft Clarity for better crash reporting and analytics
+
 ### 0.0.8
 * Fixed build error on iOS initialization
 

@@ -111,15 +111,16 @@ class _MyAppState extends State<MyApp> {
                               email: _emailCtrl.text.isNotEmpty
                                   ? _emailCtrl.text
                                   : null,
-                              extraUserData: ExtraUserData(
-                                userData: UserData(firstName: "Ola",lastName: "Shittu",dob: "12-03-1991"),
-                                govData: GovData(bvn: "12345678901"),
-                                govId: GovId(national: "https://nairametrics.com/wp-content/uploads/2013/11/nigeria-national-identity-smart-cards-combine-id-and-mastercard.jpg"),
-                                location: Location(latitude: "40.71",longitude: "74.01"),
-                                businessData: BusinessData(cac: "3081661"),
-                                address: "No 12, Ajibola Street Abule Oja, Yaba Lagos",
-                                metadata: {"custom_key": "custom_value"},
-                              ));
+                              // extraUserData: ExtraUserData(
+                              //   userData: UserData(firstName: "Ola",lastName: "Shittu",dob: "12-03-1991"),
+                              //   govData: GovData(bvn: "12345678901"),
+                              //   govId: GovId(national: "https://nairametrics.com/wp-content/uploads/2013/11/nigeria-national-identity-smart-cards-combine-id-and-mastercard.jpg"),
+                              //   location: Location(latitude: "40.71",longitude: "74.01"),
+                              //   businessData: BusinessData(cac: "3081661"),
+                              //   address: "No 12, Ajibola Street Abule Oja, Yaba Lagos",
+                              //   metadata: {"custom_key": "custom_value"},
+                              // )
+                          );
                           log("result is $result");
                         } on PlatformException {
                           log("platform error");
