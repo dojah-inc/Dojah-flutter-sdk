@@ -1,3 +1,6 @@
+### 0.1.1
+* Updated Dojah Android SDK version to v0.2.3
+
 ### 0.1.0
 * Updated Dojah Android SDK version to v0.2.1
 * Fixed address verification issue on Android and IOS devices
