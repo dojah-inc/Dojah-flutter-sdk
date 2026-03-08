@@ -1,4 +1,8 @@
 ### 0.1.1
+* Updated Dojah Android SDK version to v0.2.4
+* Added support for new Dojah Android SDK features and improvements
+
+### 0.1.1
 * Updated Dojah Android SDK version to v0.2.3
 
 ### 0.1.0

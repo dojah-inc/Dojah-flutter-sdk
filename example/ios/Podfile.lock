@@ -12,19 +12,6 @@ PODS:
     - lottie-ios (~> 4.5.2)
     - RealmSwift (~> 10.52.2)
   - Flutter (1.0.0)
-  - flutter_secure_storage (6.0.0):
-    - Flutter
-  - Google-Maps-iOS-Utils (5.0.0):
-    - GoogleMaps (~> 8.0)
-  - google_maps_flutter_ios (0.0.1):
-    - Flutter
-    - Google-Maps-iOS-Utils (< 7.0, >= 5.0)
-    - GoogleMaps (< 10.0, >= 8.4)
-  - GoogleMaps (8.4.0):
-    - GoogleMaps/Maps (= 8.4.0)
-  - GoogleMaps/Base (8.4.0)
-  - GoogleMaps/Maps (8.4.0):
-    - GoogleMaps/Base
   - GooglePlaces (8.5.0)
   - HorizonCalendar (1.16.0)
   - integration_test (0.0.1):
@@ -32,9 +19,6 @@ PODS:
   - IQKeyboardManagerSwift (7.1.1)
   - Kingfisher (7.12.0)
   - lottie-ios (4.5.2)
-  - path_provider_foundation (0.0.1):
-    - Flutter
-    - FlutterMacOS
   - Realm (10.52.3):
     - Realm/Headers (= 10.52.3)
   - Realm/Headers (10.52.3)
@@ -45,17 +29,12 @@ DEPENDENCIES:
   - dojah_kyc_sdk_flutter (from `.symlinks/plugins/dojah_kyc_sdk_flutter/ios`)
   - DojahWidget (from `https://github.com/dojah-inc/sdk-swift.git`, branch `pod-package-dev`)
   - Flutter (from `Flutter`)
-  - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
-  - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
-  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - Realm (~> 10.52.2)
 
 SPEC REPOS:
   trunk:
     - Clarity
-    - Google-Maps-iOS-Utils
-    - GoogleMaps
     - GooglePlaces
     - HorizonCalendar
     - IQKeyboardManagerSwift
@@ -72,14 +51,8 @@ EXTERNAL SOURCES:
     :git: https://github.com/dojah-inc/sdk-swift.git
   Flutter:
     :path: Flutter
-  flutter_secure_storage:
-    :path: ".symlinks/plugins/flutter_secure_storage/ios"
-  google_maps_flutter_ios:
-    :path: ".symlinks/plugins/google_maps_flutter_ios/ios"
   integration_test:
     :path: ".symlinks/plugins/integration_test/ios"
-  path_provider_foundation:
-    :path: ".symlinks/plugins/path_provider_foundation/darwin"
 
 CHECKOUT OPTIONS:
   DojahWidget:
@@ -90,18 +63,13 @@ SPEC CHECKSUMS:
   Clarity: fbd41ffa7b3c925ffb092a717c2dd896c39eff72
   dojah_kyc_sdk_flutter: 473995e92048019f8e921ba27a449cd346495392
   DojahWidget: aac4a24949b55c476a8d9b83638b6c317dcc2f4a
-  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_secure_storage: 1ed9476fba7e7a782b22888f956cce43e2c62f13
-  Google-Maps-iOS-Utils: 66d6de12be1ce6d3742a54661e7a79cb317a9321
-  google_maps_flutter_ios: 0291eb2aa252298a769b04d075e4a9d747ff7264
-  GoogleMaps: 8939898920281c649150e0af74aa291c60f2e77d
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   GooglePlaces: 426efb69051e7b460e16300ba63598687d10fa1a
   HorizonCalendar: 90d7281cf1cd0cb3fae1d3e53f6f7fd24fda5a0e
   integration_test: 4a889634ef21a45d28d50d622cf412dc6d9f586e
   IQKeyboardManagerSwift: d7f3d3a562c237a0e7335e657cd598c452f57f1b
   Kingfisher: 53a10ea35051a436b5fb626ca2dd8f3144d755e9
   lottie-ios: 96784afc26ea031d3e2b6cae342a4b8915072489
-  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
   Realm: f9d340f510309e52a393d65c56103ef524d88a43
   RealmSwift: 673454b09bc096853ee530e824847f38cdc21243
 
