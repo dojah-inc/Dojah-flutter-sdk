@@ -1,3 +1,9 @@
+### 0.1.3
+* Updated Dojah Android SDK version to v0.2.5
+* Fixed minor issues and improved performance on Android devices
+* Fixed crash with government ID verification on Android devices
+* Fixed issue with geo location retrieval on Android devices
+
 ### 0.1.2
 * Updated Dojah Android SDK version to v0.2.4
 * Added support for new Dojah Android SDK features and improvements

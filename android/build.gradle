@@ -61,7 +61,7 @@ android {
     dependencies {
         testImplementation("org.jetbrains.kotlin:kotlin-test")
         testImplementation("org.mockito:mockito-core:5.0.0")
-        implementation 'com.github.dojah-inc:sdk-kotlin:v0.2.4'
+        implementation 'com.github.dojah-inc:sdk-kotlin:v0.2.5'
 //        implementation 'com.github.dojah-inc:sdk-kotlin:v0.1.1-dev'
     }
 
