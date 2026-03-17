@@ -1,3 +1,9 @@
+### 0.1.4
+* Updated Dojah Android SDK version to v0.2.6
+* Fixed minor issues and improved performance on Android devices
+* Fixed issue with stuck loading screen on Android devices
+* Fixed issue with location permission request on Android devices
+
 ### 0.1.3
 * Updated Dojah Android SDK version to v0.2.5
 * Fixed minor issues and improved performance on Android devices
