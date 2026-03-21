@@ -1,3 +1,8 @@
+### 0.1.5
+* Updated Dojah Android SDK version to v0.2.7
+* Fixed minor issues and improved performance on Android devices
+* Added implementation for address and utility bill verification on IOS devices
+
 ### 0.1.4
 * Updated Dojah Android SDK version to v0.2.6
 * Fixed minor issues and improved performance on Android devices
