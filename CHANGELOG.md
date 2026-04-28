@@ -1,3 +1,8 @@
+### 0.1.6
+* Updated Dojah Android SDK version to v0.2.8
+* Fixed minor issues and improved performance on Android devices
+* Added implementation for live location verification on android devices
+
 ### 0.1.5
 * Updated Dojah Android SDK version to v0.2.7
 * Fixed minor issues and improved performance on Android devices
