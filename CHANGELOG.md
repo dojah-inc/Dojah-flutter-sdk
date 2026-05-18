@@ -1,3 +1,9 @@
+### 0.1.8
+* Updated Dojah Android SDK version to v0.3.0
+* Added support for new Dojah Android SDK features and improvements
+* Fixed minor issues and improved performance on Android devices
+* Resolved issue with fraud checks on ios and android devices
+
 ### 0.1.7
 * Updated Dojah Android SDK version to v0.2.9
 
