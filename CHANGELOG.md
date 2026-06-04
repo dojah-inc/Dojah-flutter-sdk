@@ -1,3 +1,8 @@
+### 0.1.10
+* Updated Dojah Android SDK version to v0.3.3
+* Fixed issue with unsupported country in disclaimer screen
+* Added support for new Dojah Android SDK features and improvements
+
 ### 0.1.9
 * Updated Dojah Android SDK version to v0.3.2
 * Added custom-questions implementation for android devices
