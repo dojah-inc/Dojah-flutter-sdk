@@ -1,3 +1,9 @@
+### 0.1.11
+* Updated Dojah Android SDK version to v0.3.4
+* Custom Questions flow implementation
+* Digital signature implementation
+* Added support for new Dojah Android SDK features and improvements
+
 ### 0.1.10
 * Updated Dojah Android SDK version to v0.3.3
 * Fixed issue with unsupported country in disclaimer screen
