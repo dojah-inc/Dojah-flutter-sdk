@@ -1,3 +1,7 @@
+### 0.1.12
+* Updated Dojah Android SDK version to v0.3.6
+* Added support for new Dojah Android SDK features and improvements
+
 ### 0.1.11
 * Updated Dojah Android SDK version to v0.3.4
 * Custom Questions flow implementation
