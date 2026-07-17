@@ -25,4 +25,4 @@
 -keep class * extends io.flutter.plugin.common.PluginRegistry { *; }
 -keep class * extends io.flutter.plugins.** { *; }
 -keep class * implements io.flutter.plugin.common.PluginRegistry.PluginRegistrantCallback { *; }
-
+-dontwarn java.lang.invoke.StringConcatFactory
