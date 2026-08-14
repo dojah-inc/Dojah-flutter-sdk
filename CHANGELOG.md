@@ -1,3 +1,8 @@
+### 0.1.16
+* Updated Dojah Android SDK version to v0.4.1
+* Resolved crash on liveness capture screen
+* Fixed initialisation error for re take selfie flow
+
 ### 0.1.15
 * Updated Dojah Android SDK version to v0.4.0
 * Added support for new Dojah Android SDK features and improvements
