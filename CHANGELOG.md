@@ -1,3 +1,8 @@
+### 0.1.18
+* Updated Dojah Android SDK version to v0.4.4
+* Resolved issue with gov't ID selection page
+* Optimised gradle configuration
+
 ### 0.1.17
 * Updated Dojah Android SDK version to v0.4.2
 * Resolved issue with gov't ID selection page
