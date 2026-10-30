@@ -105,4 +105,4 @@
 -dontwarn org.bouncycastle.jsse.provider.BouncyCastleJsseProvider
 -dontwarn org.conscrypt.Conscrypt$Version
 -dontwarn org.conscrypt.Conscrypt
-
+-dontwarn java.lang.invoke.StringConcatFactory
