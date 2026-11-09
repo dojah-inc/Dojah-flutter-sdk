@@ -1,3 +1,7 @@
+### 0.1.20
+* Updated Dojah Android SDK version to v0.4.6
+* Resolved issue with email free provider
+
 ### 0.1.19
 * Updated Dojah Android SDK version to v0.4.5
 * Resolved issue with gov't ID selection page
