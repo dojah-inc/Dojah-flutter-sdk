@@ -1,3 +1,7 @@
+### 0.1.21
+* Updated Dojah Android SDK version to v0.4.7
+* Resolved issue with otp for none OTP config
+
 ### 0.1.20
 * Updated Dojah Android SDK version to v0.4.6
 * Resolved issue with email free provider
